@@ -1,0 +1,78 @@
+<div class="wrapper">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="app-title text-center">{{title}}</h1>
+            </div>
+
+            <div class="col-md-12 text-center">
+
+                <p class="time">Last updated: {{updatedOn}}</p>
+
+                <div class="alert-box alert alert-danger" role="alert">
+                  <strong>Confirmed</strong>
+                  <span class="total">{{totalConfirmed}}</span>
+                  <span>+{{totalDeltaConfirmed}}</span>
+                </div>
+                <div class="alert-box alert alert-primary" role="alert">
+                  <strong>Active</strong>
+                  <span class="total">{{totalActive}}</span>
+                  <span>&nbsp;</span>
+                </div>
+                <div class="alert-box alert alert-success" role="alert">
+                  <strong>Recovered</strong>
+                  <span class="total">{{totalRecovered}}</span>
+                  <span>+{{totalDeltaRecovered}}</span>
+                </div>
+                <div class="alert-box alert alert-secondary" role="alert">
+                  <strong>Deceased</strong>
+                  <span class="total">{{totalDeaths}}</span>
+                  <span>+{{totalDeltaDeaths}}</span>
+                </div>
+                <div class="alert-box alert alert-info" role="alert">
+                  <a class="source" [href]="testSource" target="_blank"><i class="fa fa-link"></i></a>
+                  <span><strong>Tested</strong></span>
+                  <span class="total">{{totalTested}}</span>
+                  <span>+{{totalDeltaTested}}</span>
+                </div>
+            </div>
+        </div> <!-- counter-widgets -->
+
+        <div class="row">
+          <div class="col-md-12">
+            <app-map></app-map>
+          </div>
+        </div><!-- map -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="responsive-table mt-3">
+
+                  <table class="table table-sm table-striped">
+                    <thead>
+                      <tr>
+                        <th>State/UT</th>
+                        <th>Confirmed</th>
+                        <th>Active</th>
+                        <th>Recovered</th>
+                        <th>Deceased</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let case of totalStatewiseCases">
+                        <td class="name">{{case.state}}</td>
+                        <td class="confirmed"><span class="delta" *ngIf="case.deltaconfirmed > 0">{{case.deltaconfirmed}}</span>{{case.confirmed}}</td>
+                        <td class="active">{{case.active}}</td>
+                        <td class="recovered"><span class="delta" *ngIf="case.deltarecovered > 0">{{case.deltarecovered}}</span>{{case.recovered}}</td>
+                        <td class="deceased"><span class="delta" *ngIf="case.deltadeaths > 0">{{case.deltadeaths}}</span>{{case.deaths}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+            </div>
+        </div><!-- statewise-table-->
+
+    </div>
+</div><!-- wrapper -->
